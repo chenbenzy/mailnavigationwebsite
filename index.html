@@ -32,7 +32,21 @@
                             red: '#FF3B30',
                             orange: '#FF9500',
                             purple: '#AF52DE'
+                        },
+                        premium: {
+                            primary: '#0A2540',
+                            secondary: '#635BFF',
+                            accent: '#00D4FF',
+                            light: '#F7FAFC',
+                            dark: '#102A43'
                         }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)',
+                        'premium-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
                     }
                 }
             }
@@ -43,60 +57,88 @@
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-image: linear-gradient(to bottom, rgba(247, 250, 252, 0.8), rgba(247, 250, 252, 1));
+            background-attachment: fixed;
         }
         
         .email-card {
-            transition: all 0.2s ease-in-out;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         .email-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: rgba(99, 91, 255, 0.2);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #635BFF, #00D4FF);
+            border-radius: 3px;
         }
         
         @media (prefers-color-scheme: dark) {
+            body {
+                background-image: linear-gradient(to bottom, rgba(10, 37, 64, 0.95), rgba(16, 42, 67, 1));
+            }
             .dark-mode-text {
-                color: #F2F2F7;
+                color: #F7FAFC;
             }
             .dark-mode-bg {
-                background-color: #1C1C1E;
+                background-color: #102A43;
             }
         }
     </style>
 </head>
-<body class="bg-apple-lightgray dark:bg-apple-darkgray min-h-screen">
-    <header class="bg-white dark:bg-gray-900 shadow-md">
+<body class="bg-premium-light dark:bg-premium-dark min-h-screen">
+    <header class="bg-white dark:bg-premium-dark shadow-premium">
         <div class="container mx-auto px-4 py-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-apple-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-premium-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <h1 class="text-2xl md:text-3xl font-bold ml-2 text-apple-blue dark:text-white">All Mail Navigation</h1>
+                    <h1 class="text-2xl md:text-3xl font-bold ml-2 text-premium-primary dark:text-white">All Mail Navigation</h1>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 text-center md:text-right">All Quick access to email login pages worldwide</p>
+                <p class="text-gray-600 dark:text-gray-300 text-center md:text-right">Quick access to email login pages worldwide</p>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <section class="mb-12 text-center">
-            <h2 class="text-xl md:text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Find Your Email Provider</h2>
-            <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+    <main class="container mx-auto px-4 py-12">
+        <section class="mb-16 text-center max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-premium-primary dark:text-white">Find Your Email Provider</h2>
+            <p class="text-gray-600 dark:text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
                 All Mail Navigation provides direct links to login pages of major email providers worldwide. 
                 Simply click on your email service provider below to access your inbox without searching.
             </p>
         </section>
-
-        <section class="mb-12">
-            <h2 class="text-xl font-semibold mb-6 text-gray-800 dark:text-white border-b pb-2">Popular Email Services</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        
+        <section class="mb-16">
+            <h2 class="text-xl font-semibold mb-8 text-premium-primary dark:text-white border-b pb-2 section-title">Popular Email Services</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 <!-- Gmail -->
-                <a href="https://mail.google.com" target="_blank" rel="noopener" class="email-card bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
-                    <div class="w-16 h-16 flex items-center justify-center bg-red-100 dark:bg-red-900 rounded-full mb-4">
-                        <img src="https://pic.tanketech.cn/lhc_pic/gmail.svg" alt="Gmail" class="h-10 w-10">
+                <a href="https://mail.google.com" target="_blank" rel="noopener" class="email-card bg-white dark:bg-gray-800 rounded-xl shadow-premium hover:shadow-premium-hover p-6 flex flex-col items-center">
+                    <div class="w-16 h-16 flex items-center justify-center bg-red-100 dark:bg-red-900 rounded-full mb-4 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-10 w-10">
+                            <path fill="#EA4335" d="M21.5,4h-19C1.119,4,0,5.119,0,6.5v11C0,18.881,1.119,20,2.5,20h19c1.381,0,2.5-1.119,2.5-2.5v-11 C24,5.119,22.881,4,21.5,4z M2.5,5h19C22.327,5,23,5.673,23,6.5v0.528l-10.426,6.5L2.147,7.028L2.146,6.5 C2.146,5.673,2.819,5,2.5,5z M21.5,19h-19C1.673,19,1,18.327,1,17.5v-9.046l10.12,5.7L21.24,8.454L21.241,17.5 C21.241,18.327,20.568,19,21.5,19z"/>
+                            <path fill="#EA4335" d="M7.5,11h9c0.276,0,0.5-0.224,0.5-0.5S16.776,10,16.5,10h-9C7.224,10,7,10.224,7,10.5S7.224,11,7.5,11z"/>
+                            <path fill="#EA4335" d="M7.5,13h9c0.276,0,0.5-0.224,0.5-0.5S16.776,12,16.5,12h-9C7.224,12,7,12.224,7,12.5S7.224,13,7.5,13z"/>
+                        </svg>
                     </div>
-                    <h3 class="text-lg font-medium text-gray-800 dark:text-white">Gmail</h3>
+                    <h3 class="text-lg font-medium text-premium-primary dark:text-white">Gmail</h3>
                     <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">Google's email service</p>
                 </a>
                 
@@ -126,7 +168,7 @@
                 <a href="https://www.icloud.com/mail" target="_blank" rel="noopener" class="email-card bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
                     <div class="w-16 h-16 flex items-center justify-center bg-blue-100 dark:bg-blue-900 rounded-full mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-10 w-10">
-                            <path fill="#3693F3" d="M21.5,9.146h-1.021c-0.065-1.203-0.344-2.349-0.823-3.371c-0.477-1.023-1.104-1.916-1.882-2.694 c-0.778-0.778-1.671-1.405-2.694-1.882c-1.022-0.478-2.168-0.758-3.371-0.823V0.5c0-0.276-0.224-0.5-0.5-0.5s-0.5,0.224-0.5,0.5 v0.01c-1.203,0.065-2.349,0.344-3.371,0.823c-1.023,0.477-1.916,1.104-2.694,1.882c-0.778,0.778-1.405,1.671-1.882,2.694 c-0.478,1.022-0.758,2.168-0.823,3.371H2.5c-0.276,0-0.5,0.224-0.5,0.5s0.224,0.5,0.5,0.5h0.01c0.065,1.203,0.344,2.349,0.823,3.371 c0.477,1.023,1.104,1.916,1.882,2.694c0.778,0.778,1.671,1.405,2.694,1.882c1.022,0.478,2.168,0.758,3.371,0.823V19.5 c0,0.276,0.224,0.5,0.5,0.5s0.5-0.224,0.5-0.5v-0.01c1.203-0.065,2.349-0.344,3.371-0.823c1.023-0.477,1.916-1.104,2.694-1.882 c0.778-0.778,1.405-1.671,1.882-2.694c0.478-1.022,0.758-2.168,0.823-3.371H21.5c0.276,0,0.5-0.224,0.5-0.5S21.776,9.146,21.5,9.146z M12,18.5c-3.584,0-6.5-2.916-6.5-6.5s2.916-6.5,6.5-6.5s6.5,2.916,6.5,6.5S15.584,18.5,12,18.5z"/>
+                            <path fill="#3693F3" d="M21.5,9.146h-1.021c-0.065-1.203-0.344-2.349-0.823-3.371c-0.477-1.023-1.104-1.916-1.882-2.694 c-0.778-0.778-1.671-1.405-2.694-1.882c-1.022-0.478-2.168-0.758-3.371-0.823V0.5c0-0.276-0.224-0.5-0.5-0.5s-0.5,0.224-0.5,0.5 v0.01c-1.203,0.065-2.349,0.344-3.371,0.823c-1.023,0.477-1.916,1.104-2.694,1.882c-0.778,0.778-1.405,1.671-1.882,2.694 c-0.478,1.022-0.758,2.168-0.823,3.371H2.5c-0.276,0,0.5-0.224-0.5,0.5s0.224,0.5,0.5,0.5h0.01c0.065,1.203,0.344,2.349,0.823,3.371 c0.477,1.023,1.104,1.916,1.882,2.694c0.778,0.778,1.671,1.405,2.694,1.882c1.022,0.478,2.168,0.758,3.371,0.823V19.5 c0,0.276,0.224,0.5,0.5,0.5s0.5-0.224,0.5-0.5v-0.01c1.203-0.065,2.349-0.344,3.371-0.823c1.023-0.477,1.916-1.104,2.694-1.882 c0.778-0.778,1.405-1.671,1.882-2.694c0.478-1.022,0.758-2.168,0.823-3.371H21.5c0.276,0,0.5-0.224,0.5-0.5S21.776,9.146,21.5,9.146z M12,18.5c-3.584,0-6.5-2.916-6.5-6.5s2.916-6.5,6.5-6.5s6.5,2.916,6.5,6.5S15.584,18.5,12,18.5z"/>
                         </svg>
                     </div>
                     <h3 class="text-lg font-medium text-gray-800 dark:text-white">iCloud Mail</h3>
@@ -136,7 +178,7 @@
         </section>
 
         <section class="mb-12">
-            <h2 class="text-xl font-semibold mb-6 text-gray-800 dark:text-white border-b pb-2">Chinese Email Services</h2>
+            <h2 class="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-400 border-b pb-2">Chinese Email Services</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- QQ Mail -->
                 <a href="https://mail.qq.com" target="_blank" rel="noopener" class="email-card bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
@@ -190,7 +232,7 @@
         </section>
 
         <section class="mb-12">
-            <h2 class="text-xl font-semibold mb-6 text-gray-800 dark:text-white border-b pb-2">European Email Services</h2>
+            <h2 class="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-400 border-b pb-2">European Email Services</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- ProtonMail -->
                 <a href="https://mail.protonmail.com" target="_blank" rel="noopener" class="email-card bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
@@ -239,7 +281,7 @@
         </section>
 
         <section class="mb-12">
-            <h2 class="text-xl font-semibold mb-6 text-gray-800 dark:text-white border-b pb-2">Other Popular Email Services</h2>
+            <h2 class="text-xl font-semibold mb-6 text-gray-800 dark:text-gray-400 border-b pb-2">Other Popular Email Services</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Zoho Mail -->
                 <a href="https://mail.zoho.com" target="_blank" rel="noopener" class="email-card bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center">
@@ -288,19 +330,26 @@
         </section>
     </main>
 
-    <footer class="bg-white dark:bg-gray-900 py-8 mt-12">
+    <footer class="bg-white dark:bg-premium-dark py-8 mt-12 border-t border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <p class="text-gray-600 dark:text-gray-300">&copy; 2025 All Mail Navigation. All rights reserved.</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">&copy; 2023 All Mail Navigation. All rights reserved.</p>
                 </div>
-                <div>
-                    <p class="text-gray-600 dark:text-gray-300">Contact: <a href="mailto:info@mailnavigation.com" class="text-apple-blue hover:underline">Buymeacoffe@Gmail.com</a></p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-premium-secondary dark:text-gray-400 dark:hover:text-premium-accent transition-colors">
+                        <span class="sr-only">Privacy Policy</span>
+                        <span>Privacy Policy</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-premium-secondary dark:text-gray-400 dark:hover:text-premium-accent transition-colors">
+                        <span class="sr-only">Terms of Service</span>
+                        <span>Terms of Service</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-premium-secondary dark:text-gray-400 dark:hover:text-premium-accent transition-colors">
+                        <span class="sr-only">Contact</span>
+                        <span>Contact</span>
+                    </a>
                 </div>
-            </div>
-            <div class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-                <p>All Mail Navigation is not affiliated with any of the email service providers listed on this site.</p>
-                <p class="mt-2">All trademarks and logos belong to their respective owners.</p>
             </div>
         </div>
     </footer>
